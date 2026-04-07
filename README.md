@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/kjhealy/nycroutes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kjhealy/nycroutes/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Spatial and tabular data describing the New York City subway system,
