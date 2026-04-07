@@ -1,0 +1,48 @@
+authors:
+  Kieran Healy:
+    href: http://kieranhealy.org
+
+url: https://kjhealy.github.io/nycroutes/
+template:
+  bootstrap: 5
+  bslib:
+    base_font: {google: "IBM Plex Sans"}
+    heading_font: {google: "IBM Plex Sans"}
+    code_font: {google: "IBM Plex Mono"}
+
+reference:
+  - title: "Subway routes"
+    desc: Route metadata and route shape geometries.
+    contents:
+      - nyc_subway_routes_df
+      - nyc_subway_routes_sf
+  - title: "Subway stops"
+    desc: Station and platform point locations.
+    contents:
+      - nyc_subway_stops_sf
+      - nyc_subway_stops_parent_sf
+      - nyc_subway_stops_platform_sf
+  - title: "Transfers"
+    desc: Transfer relationships between stops.
+    contents:
+      - nyc_subway_transfers_df
+  - title: "Schematic (offset) layers"
+    desc: Pre-computed offset routes and stops for schematic maps.
+    contents:
+      - nyc_subway_routes_offset_sf
+      - nyc_subway_stops_offset_sf
+
+navbar:
+  right:
+   - icon: fa-github
+     href: https://github.com/kjhealy/nycroutes
+
+figures:
+  dev: grDevices::png
+  dpi: 300
+  dev.args: []
+  fig.ext: png
+  fig.width: 7.2916667
+  fig.height: ~
+  fig.retina: 2
+  fig.asp: 1.618

@@ -1,0 +1,89 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# nycroutes <img src="man/figures/nycroutes.png" align="right" width="360">
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Spatial and tabular data describing the New York City subway system,
+derived from the MTA's GTFS feed. Includes route shapes, stops, parent
+stations, directional platforms, transfers, and pre-computed offset
+versions of routes and stops suitable for schematic mapping.
+
+## Installation
+
+You can install the development version of nycroutes from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("kjhealy/nycroutes")
+```
+
+## Load
+
+```{r load, message = FALSE}
+library(nycroutes)
+library(dplyr)
+library(ggplot2)
+library(sf)
+```
+
+## What's included
+
+```{r contents}
+nyc_subway_routes_df
+
+nyc_subway_routes_sf
+
+nyc_subway_stops_sf
+
+nyc_subway_stops_parent_sf
+
+nyc_subway_stops_platform_sf
+
+nyc_subway_transfers_df
+
+nyc_subway_routes_offset_sf
+
+nyc_subway_stops_offset_sf
+```
+
+## Example
+
+A quick map of the subway system, coloring each route by its MTA brand
+color and marking parent stations:
+
+```{r subway-map, fig.asp = 1.2, fig.width = 7.2, dpi = 200}
+ggplot() +
+  geom_sf(
+    data = nyc_subway_routes_sf,
+    mapping = aes(color = route_color),
+    linewidth = 0.4,
+    alpha = 0.8
+  ) +
+  geom_sf(
+    data = nyc_subway_stops_parent_sf,
+    size = 0.3,
+    color = "grey20"
+  ) +
+  scale_color_identity() +
+  labs(
+    title = "NYC subway routes and stations",
+    caption = "Source: MTA GTFS feed"
+  ) +
+  theme_void()
+```
