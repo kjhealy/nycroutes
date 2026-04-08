@@ -40,6 +40,10 @@ A simple feature collection with 1,909 rows and 8 columns:
   GTFS route identifier of a service calling at the stop. A stop may
   appear in multiple rows, one per route.
 
+- route_group:
+
+  Route group identifier (e.g., `"ACE"`, `"123"`).
+
 - x_offset:
 
   Horizontal offset in feet applied to the geometry.

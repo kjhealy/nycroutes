@@ -27,6 +27,10 @@ A simple feature collection with 311 rows and 7 columns:
 
   GTFS route identifier.
 
+- route_group:
+
+  Route group identifier (e.g., `"ACE"`, `"123"`).
+
 - route_short_name:
 
   Short service name (bullet letter/number).

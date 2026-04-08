@@ -20,6 +20,10 @@ A tibble with 29 rows and 10 columns:
 
   GTFS route identifier (e.g., `"A"`, `"FX"`).
 
+- route_group:
+
+  Route group identifier (e.g., `"ACE"`, `"123"`).
+
 - agency_id:
 
   GTFS agency identifier (all `"MTA NYCT"`).
