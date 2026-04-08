@@ -8,6 +8,7 @@
 #' A tibble with 29 rows and 10 columns:
 #' \describe{
 #'   \item{route_id}{GTFS route identifier (e.g., `"A"`, `"FX"`).}
+#'   \item{route_group}{Route group identifier (e.g., `"ACE"`, `"123"`).}
 #'   \item{agency_id}{GTFS agency identifier (all `"MTA NYCT"`).}
 #'   \item{route_short_name}{Short service name, usually the bullet
 #'     letter or number shown on signage.}
@@ -41,6 +42,7 @@
 #' \describe{
 #'   \item{shape_id}{GTFS shape identifier.}
 #'   \item{route_id}{GTFS route identifier.}
+#'   \item{route_group}{Route group identifier (e.g., `"ACE"`, `"123"`).}
 #'   \item{route_short_name}{Short service name (bullet letter/number).}
 #'   \item{route_long_name}{Descriptive long name.}
 #'   \item{route_color}{Brand color as a hex string prefixed with `#`.}
@@ -71,6 +73,7 @@
 #' \describe{
 #'   \item{shape_id}{GTFS shape identifier.}
 #'   \item{route_id}{GTFS route identifier the shape belongs to.}
+#'   \item{route_group}{Route group identifier (e.g., `"ACE"`, `"123"`).}
 #'   \item{route_short_name}{Short service name (bullet letter/number).}
 #'   \item{route_long_name}{Descriptive long name.}
 #'   \item{route_color}{Brand color as a hex string prefixed with `#`.}
@@ -104,6 +107,7 @@
 #'   \item{parent_station}{`stop_id` of the owning parent station.}
 #'   \item{route_id}{GTFS route identifier of a service calling at
 #'     the stop. A stop may appear in multiple rows, one per route.}
+#'   \item{route_group}{Route group identifier (e.g., `"ACE"`, `"123"`).}
 #'   \item{x_offset}{Horizontal offset in feet applied to the
 #'     geometry.}
 #'   \item{route_color}{Brand color as a hex string prefixed with

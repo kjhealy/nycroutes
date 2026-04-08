@@ -10,6 +10,11 @@ subway_gtfs <- read_gtfs(here(rawpath, "gtfs_subway.zip"))
 subway_sf <- gtfs_as_sf(subway_gtfs)
 
 # ---- nyc_subway_routes_df -------------------------------------------------
+# Route groups table we will join to the subway routes and stops objects.
+# The route group is simpler than the route_id, e.g. aggregating all shuttles
+# to the "S" route group.
+route_groups_df <- read_csv(here("data-raw", "subway", "route_groups.csv"))
+
 # Tabular route metadata (29 named subway services).
 
 nyc_subway_routes_df <- subway_gtfs$routes |>
@@ -26,7 +31,9 @@ nyc_subway_routes_df <- subway_gtfs$routes |>
       NA_character_,
       paste0("#", route_text_color)
     )
-  )
+  ) |>
+  left_join(route_groups_df, by = join_by(route_id)) |>
+  relocate(route_group, .after = route_id)
 
 usethis::use_data(nyc_subway_routes_df, overwrite = TRUE, compress = "xz")
 
@@ -41,12 +48,19 @@ nyc_subway_routes_sf <- subway_sf$shapes |>
   ) |>
   left_join(
     nyc_subway_routes_df |>
-      select(route_id, route_short_name, route_long_name, route_color),
+      select(
+        route_id,
+        route_group,
+        route_short_name,
+        route_long_name,
+        route_color
+      ),
     by = "route_id"
   ) |>
   select(
     shape_id,
     route_id,
+    route_group,
     route_short_name,
     route_long_name,
     route_color,
@@ -126,7 +140,7 @@ n_routes <- n_distinct(nyc_subway_routes_sf$route_id)
 
 nyc_subway_routes_offset_sf <- nyc_subway_routes_sf |>
   group_by(route_id) |>
-  mutate(x_offset = (cur_group_id() - n_routes / 2) * 50) |>
+  mutate(x_offset = (cur_group_id() - n_routes / 2) * 100) |>
   ungroup() |>
   rowwise() |>
   mutate(geometry = offset_geometry(geometry, x_offset)) |>
@@ -151,6 +165,7 @@ route_colors <- nyc_subway_routes_offset_sf |>
 # ---- nyc_subway_stops_offset_sf -------------------------------------------
 # Directional platforms joined to routes and offset horizontally so that
 # each service draws its own stop marker alongside the offset route line.
+# We join route_groups here, too.
 
 nyc_subway_stops_offset_sf <- subway_sf$stops |>
   clean_names() |>
@@ -169,6 +184,8 @@ nyc_subway_stops_offset_sf <- subway_sf$stops |>
   ) |>
   left_join(route_offsets, by = "route_id") |>
   left_join(route_colors, by = "route_id") |>
+  left_join(route_groups_df, by = "route_id") |>
+  relocate(route_group, .after = route_id) |>
   filter(!is.na(x_offset)) |>
   rowwise() |>
   mutate(geometry = offset_point(geometry, x_offset)) |>

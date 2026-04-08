@@ -1,6 +1,6 @@
 Package: nycroutes
 Title: NYC Subway Routes and Stops
-Version: 0.0.2.9000
+Version: 0.0.3.9000
 Authors@R:
     person("Kieran", "Healy", , "kjhealy@gmail.com", role = c("aut", "cre"))
 Description: Spatial and tabular data describing the New York City

@@ -8,6 +8,7 @@
 #' A tibble with 29 rows and 10 columns:
 #' \describe{
 #'   \item{route_id}{GTFS route identifier (e.g., `"A"`, `"FX"`).}
+#'   \item{route_group}{Route group identifier (e.g., `"ACE"`, `"123"`).}
 #'   \item{agency_id}{GTFS agency identifier (all `"MTA NYCT"`).}
 #'   \item{route_short_name}{Short service name, usually the bullet
 #'     letter or number shown on signage.}

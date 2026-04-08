@@ -17,6 +17,7 @@
 #'   \item{parent_station}{`stop_id` of the owning parent station.}
 #'   \item{route_id}{GTFS route identifier of a service calling at
 #'     the stop. A stop may appear in multiple rows, one per route.}
+#'   \item{route_group}{Route group identifier (e.g., `"ACE"`, `"123"`).}
 #'   \item{x_offset}{Horizontal offset in feet applied to the
 #'     geometry.}
 #'   \item{route_color}{Brand color as a hex string prefixed with
