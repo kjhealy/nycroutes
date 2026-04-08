@@ -11,6 +11,7 @@ A simple feature collection with 311 rows and 7 columns:
 \describe{
 \item{shape_id}{GTFS shape identifier.}
 \item{route_id}{GTFS route identifier.}
+\item{route_group}{Route group identifier (e.g., \code{"ACE"}, \code{"123"}).}
 \item{route_short_name}{Short service name (bullet letter/number).}
 \item{route_long_name}{Descriptive long name.}
 \item{route_color}{Brand color as a hex string prefixed with \verb{#}.}
