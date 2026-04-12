@@ -72,52 +72,52 @@
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc_subway_routes_df</span></span>
-<span><span class="co">#&gt; # A tibble: 29 × 10</span></span>
-<span><span class="co">#&gt;    route_id agency_id route_short_name route_long_name     route_desc route_type</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;               &lt;chr&gt;           &lt;int&gt;</span></span>
-<span><span class="co">#&gt;  1 A        MTA NYCT  A                8 Avenue Express    Trains op…          1</span></span>
-<span><span class="co">#&gt;  2 C        MTA NYCT  C                8 Avenue Local      Trains op…          1</span></span>
-<span><span class="co">#&gt;  3 E        MTA NYCT  E                8 Avenue Local      Trains op…          1</span></span>
-<span><span class="co">#&gt;  4 B        MTA NYCT  B                6 Avenue Express    Trains op…          1</span></span>
-<span><span class="co">#&gt;  5 D        MTA NYCT  D                6 Avenue Express    Trains op…          1</span></span>
-<span><span class="co">#&gt;  6 F        MTA NYCT  F                Queens Blvd Expres… Trains op…          1</span></span>
-<span><span class="co">#&gt;  7 FX       MTA NYCT  FX               Brooklyn F Express  Trains op…          1</span></span>
-<span><span class="co">#&gt;  8 M        MTA NYCT  M                Queens Blvd Local/… Trains op…          1</span></span>
-<span><span class="co">#&gt;  9 G        MTA NYCT  G                Brooklyn-Queens Cr… Trains op…          1</span></span>
-<span><span class="co">#&gt; 10 J        MTA NYCT  J                Nassau St Local     Trains op…          1</span></span>
+<span><span class="co">#&gt; # A tibble: 29 × 11</span></span>
+<span><span class="co">#&gt;    route_id route_group agency_id route_short_name route_long_name    route_desc</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;     </span></span>
+<span><span class="co">#&gt;  1 A        ACE         MTA NYCT  A                8 Avenue Express   Trains op…</span></span>
+<span><span class="co">#&gt;  2 C        ACE         MTA NYCT  C                8 Avenue Local     Trains op…</span></span>
+<span><span class="co">#&gt;  3 E        ACE         MTA NYCT  E                8 Avenue Local     Trains op…</span></span>
+<span><span class="co">#&gt;  4 B        BDFM        MTA NYCT  B                6 Avenue Express   Trains op…</span></span>
+<span><span class="co">#&gt;  5 D        BDFM        MTA NYCT  D                6 Avenue Express   Trains op…</span></span>
+<span><span class="co">#&gt;  6 F        BDFM        MTA NYCT  F                Queens Blvd Expre… Trains op…</span></span>
+<span><span class="co">#&gt;  7 FX       BDFM        MTA NYCT  FX               Brooklyn F Express Trains op…</span></span>
+<span><span class="co">#&gt;  8 M        BDFM        MTA NYCT  M                Queens Blvd Local… Trains op…</span></span>
+<span><span class="co">#&gt;  9 G        G           MTA NYCT  G                Brooklyn-Queens C… Trains op…</span></span>
+<span><span class="co">#&gt; 10 J        JZ          MTA NYCT  J                Nassau St Local    Trains op…</span></span>
 <span><span class="co">#&gt; # ℹ 19 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 4 more variables: route_url &lt;chr&gt;, route_color &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; # ℹ 5 more variables: route_type &lt;int&gt;, route_url &lt;chr&gt;, route_color &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   route_text_color &lt;chr&gt;, route_sort_order &lt;int&gt;</span></span>
 <span></span>
 <span><span class="va">nyc_subway_routes_sf</span></span>
-<span><span class="co">#&gt; Simple feature collection with 311 features and 5 fields</span></span>
+<span><span class="co">#&gt; Simple feature collection with 311 features and 6 fields</span></span>
 <span><span class="co">#&gt; Geometry type: LINESTRING</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
 <span><span class="co">#&gt; Bounding box:  xmin: 914189.9 ymin: 126191.2 xmax: 1052169 ymax: 268346.1</span></span>
 <span><span class="co">#&gt; Projected CRS: NAD83 / New York Long Island (ftUS)</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
-<span><span class="co">#&gt;      shape_id route_id route_short_name           route_long_name route_color</span></span>
-<span><span class="co">#&gt; 1     1..N03R        1                1 Broadway - 7 Avenue Local     #D82233</span></span>
-<span><span class="co">#&gt; 2  1..N03X001     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;        &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 3     1..N04R     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;        &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 4     1..N05R     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;        &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 5     1..N06R     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;        &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 6     1..N12R     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;        &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 7     1..N13R     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;        &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 8     1..S03R        1                1 Broadway - 7 Avenue Local     #D82233</span></span>
-<span><span class="co">#&gt; 9  1..S03X001     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;        &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 10    1..S04R        1                1 Broadway - 7 Avenue Local     #D82233</span></span>
-<span><span class="co">#&gt;                          geometry</span></span>
-<span><span class="co">#&gt; 1  LINESTRING (980461.4 195059...</span></span>
-<span><span class="co">#&gt; 2  LINESTRING (980461.4 195059...</span></span>
-<span><span class="co">#&gt; 3  LINESTRING (980461.4 195059...</span></span>
-<span><span class="co">#&gt; 4  LINESTRING (980461.4 195059...</span></span>
-<span><span class="co">#&gt; 5  LINESTRING (980461.4 195059...</span></span>
-<span><span class="co">#&gt; 6  LINESTRING (980461.4 195059...</span></span>
-<span><span class="co">#&gt; 7  LINESTRING (980461.4 195059...</span></span>
-<span><span class="co">#&gt; 8  LINESTRING (1012291 263271....</span></span>
-<span><span class="co">#&gt; 9  LINESTRING (997071.2 238760...</span></span>
-<span><span class="co">#&gt; 10 LINESTRING (1011661 261601....</span></span>
+<span><span class="co">#&gt;      shape_id route_id route_group route_short_name           route_long_name</span></span>
+<span><span class="co">#&gt; 1     1..N03R        1         123                1 Broadway - 7 Avenue Local</span></span>
+<span><span class="co">#&gt; 2  1..N03X001     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 3     1..N04R     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 4     1..N05R     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 5     1..N06R     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 6     1..N12R     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 7     1..N13R     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 8     1..S03R        1         123                1 Broadway - 7 Avenue Local</span></span>
+<span><span class="co">#&gt; 9  1..S03X001     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 10    1..S04R        1         123                1 Broadway - 7 Avenue Local</span></span>
+<span><span class="co">#&gt;    route_color                       geometry</span></span>
+<span><span class="co">#&gt; 1      #D82233 LINESTRING (980461.4 195059...</span></span>
+<span><span class="co">#&gt; 2         &lt;NA&gt; LINESTRING (980461.4 195059...</span></span>
+<span><span class="co">#&gt; 3         &lt;NA&gt; LINESTRING (980461.4 195059...</span></span>
+<span><span class="co">#&gt; 4         &lt;NA&gt; LINESTRING (980461.4 195059...</span></span>
+<span><span class="co">#&gt; 5         &lt;NA&gt; LINESTRING (980461.4 195059...</span></span>
+<span><span class="co">#&gt; 6         &lt;NA&gt; LINESTRING (980461.4 195059...</span></span>
+<span><span class="co">#&gt; 7         &lt;NA&gt; LINESTRING (980461.4 195059...</span></span>
+<span><span class="co">#&gt; 8      #D82233 LINESTRING (1012291 263271....</span></span>
+<span><span class="co">#&gt; 9         &lt;NA&gt; LINESTRING (997071.2 238760...</span></span>
+<span><span class="co">#&gt; 10     #D82233 LINESTRING (1011661 261601....</span></span>
 <span></span>
 <span><span class="va">nyc_subway_stops_sf</span></span>
 <span><span class="co">#&gt; Simple feature collection with 1488 features and 4 fields</span></span>
@@ -199,48 +199,49 @@
 <span><span class="co">#&gt; # ℹ 603 more rows</span></span>
 <span></span>
 <span><span class="va">nyc_subway_routes_offset_sf</span></span>
-<span><span class="co">#&gt; Simple feature collection with 311 features and 6 fields</span></span>
+<span><span class="co">#&gt; Simple feature collection with 311 features and 7 fields</span></span>
 <span><span class="co">#&gt; Geometry type: LINESTRING</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: 914739.9 ymin: 126191.2 xmax: 1052869 ymax: 268346.1</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: 915289.9 ymin: 126191.2 xmax: 1053569 ymax: 268346.1</span></span>
 <span><span class="co">#&gt; Projected CRS: NAD83 / New York Long Island (ftUS)</span></span>
-<span><span class="co">#&gt; # A tibble: 311 × 7</span></span>
-<span><span class="co">#&gt;    shape_id   route_id route_short_name route_long_name           route_color</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;                     &lt;chr&gt;      </span></span>
-<span><span class="co">#&gt;  1 1..N03R    1        1                Broadway - 7 Avenue Local #D82233    </span></span>
-<span><span class="co">#&gt;  2 1..N03X001 &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;       </span></span>
-<span><span class="co">#&gt;  3 1..N04R    &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;       </span></span>
-<span><span class="co">#&gt;  4 1..N05R    &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;       </span></span>
-<span><span class="co">#&gt;  5 1..N06R    &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;       </span></span>
-<span><span class="co">#&gt;  6 1..N12R    &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;       </span></span>
-<span><span class="co">#&gt;  7 1..N13R    &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;       </span></span>
-<span><span class="co">#&gt;  8 1..S03R    1        1                Broadway - 7 Avenue Local #D82233    </span></span>
-<span><span class="co">#&gt;  9 1..S03X001 &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;                      &lt;NA&gt;       </span></span>
-<span><span class="co">#&gt; 10 1..S04R    1        1                Broadway - 7 Avenue Local #D82233    </span></span>
+<span><span class="co">#&gt; # A tibble: 311 × 8</span></span>
+<span><span class="co">#&gt;    shape_id   route_id route_group route_short_name route_long_name  route_color</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;      </span></span>
+<span><span class="co">#&gt;  1 1..N03R    1        123         1                Broadway - 7 Av… #D82233    </span></span>
+<span><span class="co">#&gt;  2 1..N03X001 &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;             &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt;  3 1..N04R    &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;             &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt;  4 1..N05R    &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;             &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt;  5 1..N06R    &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;             &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt;  6 1..N12R    &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;             &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt;  7 1..N13R    &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;             &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt;  8 1..S03R    1        123         1                Broadway - 7 Av… #D82233    </span></span>
+<span><span class="co">#&gt;  9 1..S03X001 &lt;NA&gt;     &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;             &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt; 10 1..S04R    1        123         1                Broadway - 7 Av… #D82233    </span></span>
 <span><span class="co">#&gt; # ℹ 301 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 2 more variables: geometry &lt;LINESTRING [US_survey_foot]&gt;, x_offset &lt;dbl&gt;</span></span>
 <span></span>
 <span><span class="va">nyc_subway_stops_offset_sf</span></span>
-<span><span class="co">#&gt; Simple feature collection with 1909 features and 7 fields</span></span>
+<span><span class="co">#&gt; Simple feature collection with 1909 features and 8 fields</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: 914739.9 ymin: 126191.2 xmax: 1051919 ymax: 268346.1</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: 915289.9 ymin: 126191.2 xmax: 1051669 ymax: 268346.1</span></span>
 <span><span class="co">#&gt; Projected CRS: NAD83 / New York Long Island (ftUS)</span></span>
-<span><span class="co">#&gt; # A tibble: 1,909 × 8</span></span>
+<span><span class="co">#&gt; # A tibble: 1,909 × 9</span></span>
 <span><span class="co">#&gt;    stop_id stop_name      location_type parent_station                 geometry</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;          &lt;POINT [US_survey_foot]&gt;</span></span>
-<span><span class="co">#&gt;  1 101N    Van Cortlandt…            NA 101                  (1011641 263271.2)</span></span>
-<span><span class="co">#&gt;  2 101S    Van Cortlandt…            NA 101                  (1011641 263271.2)</span></span>
-<span><span class="co">#&gt;  3 103N    238 St                    NA 103                  (1011011 261601.4)</span></span>
-<span><span class="co">#&gt;  4 103S    238 St                    NA 103                  (1011011 261601.4)</span></span>
-<span><span class="co">#&gt;  5 104N    231 St                    NA 104                    (1009917 259483)</span></span>
-<span><span class="co">#&gt;  6 104S    231 St                    NA 104                    (1009917 259483)</span></span>
-<span><span class="co">#&gt;  7 106N    Marble Hill-2…            NA 106                  (1008537 257916.7)</span></span>
-<span><span class="co">#&gt;  8 106S    Marble Hill-2…            NA 106                  (1008537 257916.7)</span></span>
-<span><span class="co">#&gt;  9 107N    215 St                    NA 107                  (1007032 256050.9)</span></span>
-<span><span class="co">#&gt; 10 107S    215 St                    NA 107                  (1007032 256050.9)</span></span>
+<span><span class="co">#&gt;  1 101N    Van Cortlandt…            NA 101                  (1010991 263271.2)</span></span>
+<span><span class="co">#&gt;  2 101S    Van Cortlandt…            NA 101                  (1010991 263271.2)</span></span>
+<span><span class="co">#&gt;  3 103N    238 St                    NA 103                  (1010361 261601.4)</span></span>
+<span><span class="co">#&gt;  4 103S    238 St                    NA 103                  (1010361 261601.4)</span></span>
+<span><span class="co">#&gt;  5 104N    231 St                    NA 104                    (1009267 259483)</span></span>
+<span><span class="co">#&gt;  6 104S    231 St                    NA 104                    (1009267 259483)</span></span>
+<span><span class="co">#&gt;  7 106N    Marble Hill-2…            NA 106                  (1007887 257916.7)</span></span>
+<span><span class="co">#&gt;  8 106S    Marble Hill-2…            NA 106                  (1007887 257916.7)</span></span>
+<span><span class="co">#&gt;  9 107N    215 St                    NA 107                  (1006382 256050.9)</span></span>
+<span><span class="co">#&gt; 10 107S    215 St                    NA 107                  (1006382 256050.9)</span></span>
 <span><span class="co">#&gt; # ℹ 1,899 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 3 more variables: route_id &lt;chr&gt;, x_offset &lt;dbl&gt;, route_color &lt;chr&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # ℹ 4 more variables: route_id &lt;chr&gt;, route_group &lt;chr&gt;, x_offset &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   route_color &lt;chr&gt;</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
@@ -306,6 +307,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/kjhealy/nycroutes/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/kjhealy/nycroutes/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://kjhealy.r-universe.dev/nycroutes" class="external-link"><img src="https://kjhealy.r-universe.dev/nycroutes/badges/version" alt="R-universe version"></a></li>
 </ul>
 </div>
 
