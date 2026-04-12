@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/kjhealy/nycroutes/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kjhealy/nycroutes/actions/workflows/R-CMD-check.yaml)
+[![R-universe
+version](https://kjhealy.r-universe.dev/nycroutes/badges/version)](https://kjhealy.r-universe.dev/nycroutes)
 <!-- badges: end -->
 
 Spatial and tabular data describing the New York City subway system,
@@ -36,52 +38,52 @@ library(sf)
 
 ``` r
 nyc_subway_routes_df
-#> # A tibble: 29 × 10
-#>    route_id agency_id route_short_name route_long_name     route_desc route_type
-#>    <chr>    <chr>     <chr>            <chr>               <chr>           <int>
-#>  1 A        MTA NYCT  A                8 Avenue Express    Trains op…          1
-#>  2 C        MTA NYCT  C                8 Avenue Local      Trains op…          1
-#>  3 E        MTA NYCT  E                8 Avenue Local      Trains op…          1
-#>  4 B        MTA NYCT  B                6 Avenue Express    Trains op…          1
-#>  5 D        MTA NYCT  D                6 Avenue Express    Trains op…          1
-#>  6 F        MTA NYCT  F                Queens Blvd Expres… Trains op…          1
-#>  7 FX       MTA NYCT  FX               Brooklyn F Express  Trains op…          1
-#>  8 M        MTA NYCT  M                Queens Blvd Local/… Trains op…          1
-#>  9 G        MTA NYCT  G                Brooklyn-Queens Cr… Trains op…          1
-#> 10 J        MTA NYCT  J                Nassau St Local     Trains op…          1
+#> # A tibble: 29 × 11
+#>    route_id route_group agency_id route_short_name route_long_name    route_desc
+#>    <chr>    <chr>       <chr>     <chr>            <chr>              <chr>     
+#>  1 A        ACE         MTA NYCT  A                8 Avenue Express   Trains op…
+#>  2 C        ACE         MTA NYCT  C                8 Avenue Local     Trains op…
+#>  3 E        ACE         MTA NYCT  E                8 Avenue Local     Trains op…
+#>  4 B        BDFM        MTA NYCT  B                6 Avenue Express   Trains op…
+#>  5 D        BDFM        MTA NYCT  D                6 Avenue Express   Trains op…
+#>  6 F        BDFM        MTA NYCT  F                Queens Blvd Expre… Trains op…
+#>  7 FX       BDFM        MTA NYCT  FX               Brooklyn F Express Trains op…
+#>  8 M        BDFM        MTA NYCT  M                Queens Blvd Local… Trains op…
+#>  9 G        G           MTA NYCT  G                Brooklyn-Queens C… Trains op…
+#> 10 J        JZ          MTA NYCT  J                Nassau St Local    Trains op…
 #> # ℹ 19 more rows
-#> # ℹ 4 more variables: route_url <chr>, route_color <chr>,
+#> # ℹ 5 more variables: route_type <int>, route_url <chr>, route_color <chr>,
 #> #   route_text_color <chr>, route_sort_order <int>
 
 nyc_subway_routes_sf
-#> Simple feature collection with 311 features and 5 fields
+#> Simple feature collection with 311 features and 6 fields
 #> Geometry type: LINESTRING
 #> Dimension:     XY
 #> Bounding box:  xmin: 914189.9 ymin: 126191.2 xmax: 1052169 ymax: 268346.1
 #> Projected CRS: NAD83 / New York Long Island (ftUS)
 #> First 10 features:
-#>      shape_id route_id route_short_name           route_long_name route_color
-#> 1     1..N03R        1                1 Broadway - 7 Avenue Local     #D82233
-#> 2  1..N03X001     <NA>             <NA>                      <NA>        <NA>
-#> 3     1..N04R     <NA>             <NA>                      <NA>        <NA>
-#> 4     1..N05R     <NA>             <NA>                      <NA>        <NA>
-#> 5     1..N06R     <NA>             <NA>                      <NA>        <NA>
-#> 6     1..N12R     <NA>             <NA>                      <NA>        <NA>
-#> 7     1..N13R     <NA>             <NA>                      <NA>        <NA>
-#> 8     1..S03R        1                1 Broadway - 7 Avenue Local     #D82233
-#> 9  1..S03X001     <NA>             <NA>                      <NA>        <NA>
-#> 10    1..S04R        1                1 Broadway - 7 Avenue Local     #D82233
-#>                          geometry
-#> 1  LINESTRING (980461.4 195059...
-#> 2  LINESTRING (980461.4 195059...
-#> 3  LINESTRING (980461.4 195059...
-#> 4  LINESTRING (980461.4 195059...
-#> 5  LINESTRING (980461.4 195059...
-#> 6  LINESTRING (980461.4 195059...
-#> 7  LINESTRING (980461.4 195059...
-#> 8  LINESTRING (1012291 263271....
-#> 9  LINESTRING (997071.2 238760...
-#> 10 LINESTRING (1011661 261601....
+#>      shape_id route_id route_group route_short_name           route_long_name
+#> 1     1..N03R        1         123                1 Broadway - 7 Avenue Local
+#> 2  1..N03X001     <NA>        <NA>             <NA>                      <NA>
+#> 3     1..N04R     <NA>        <NA>             <NA>                      <NA>
+#> 4     1..N05R     <NA>        <NA>             <NA>                      <NA>
+#> 5     1..N06R     <NA>        <NA>             <NA>                      <NA>
+#> 6     1..N12R     <NA>        <NA>             <NA>                      <NA>
+#> 7     1..N13R     <NA>        <NA>             <NA>                      <NA>
+#> 8     1..S03R        1         123                1 Broadway - 7 Avenue Local
+#> 9  1..S03X001     <NA>        <NA>             <NA>                      <NA>
+#> 10    1..S04R        1         123                1 Broadway - 7 Avenue Local
+#>    route_color                       geometry
+#> 1      #D82233 LINESTRING (980461.4 195059...
+#> 2         <NA> LINESTRING (980461.4 195059...
+#> 3         <NA> LINESTRING (980461.4 195059...
+#> 4         <NA> LINESTRING (980461.4 195059...
+#> 5         <NA> LINESTRING (980461.4 195059...
+#> 6         <NA> LINESTRING (980461.4 195059...
+#> 7         <NA> LINESTRING (980461.4 195059...
+#> 8      #D82233 LINESTRING (1012291 263271....
+#> 9         <NA> LINESTRING (997071.2 238760...
+#> 10     #D82233 LINESTRING (1011661 261601....
 
 nyc_subway_stops_sf
 #> Simple feature collection with 1488 features and 4 fields
@@ -163,48 +165,49 @@ nyc_subway_transfers_df
 #> # ℹ 603 more rows
 
 nyc_subway_routes_offset_sf
-#> Simple feature collection with 311 features and 6 fields
+#> Simple feature collection with 311 features and 7 fields
 #> Geometry type: LINESTRING
 #> Dimension:     XY
-#> Bounding box:  xmin: 914739.9 ymin: 126191.2 xmax: 1052869 ymax: 268346.1
+#> Bounding box:  xmin: 915289.9 ymin: 126191.2 xmax: 1053569 ymax: 268346.1
 #> Projected CRS: NAD83 / New York Long Island (ftUS)
-#> # A tibble: 311 × 7
-#>    shape_id   route_id route_short_name route_long_name           route_color
-#>    <chr>      <chr>    <chr>            <chr>                     <chr>      
-#>  1 1..N03R    1        1                Broadway - 7 Avenue Local #D82233    
-#>  2 1..N03X001 <NA>     <NA>             <NA>                      <NA>       
-#>  3 1..N04R    <NA>     <NA>             <NA>                      <NA>       
-#>  4 1..N05R    <NA>     <NA>             <NA>                      <NA>       
-#>  5 1..N06R    <NA>     <NA>             <NA>                      <NA>       
-#>  6 1..N12R    <NA>     <NA>             <NA>                      <NA>       
-#>  7 1..N13R    <NA>     <NA>             <NA>                      <NA>       
-#>  8 1..S03R    1        1                Broadway - 7 Avenue Local #D82233    
-#>  9 1..S03X001 <NA>     <NA>             <NA>                      <NA>       
-#> 10 1..S04R    1        1                Broadway - 7 Avenue Local #D82233    
+#> # A tibble: 311 × 8
+#>    shape_id   route_id route_group route_short_name route_long_name  route_color
+#>    <chr>      <chr>    <chr>       <chr>            <chr>            <chr>      
+#>  1 1..N03R    1        123         1                Broadway - 7 Av… #D82233    
+#>  2 1..N03X001 <NA>     <NA>        <NA>             <NA>             <NA>       
+#>  3 1..N04R    <NA>     <NA>        <NA>             <NA>             <NA>       
+#>  4 1..N05R    <NA>     <NA>        <NA>             <NA>             <NA>       
+#>  5 1..N06R    <NA>     <NA>        <NA>             <NA>             <NA>       
+#>  6 1..N12R    <NA>     <NA>        <NA>             <NA>             <NA>       
+#>  7 1..N13R    <NA>     <NA>        <NA>             <NA>             <NA>       
+#>  8 1..S03R    1        123         1                Broadway - 7 Av… #D82233    
+#>  9 1..S03X001 <NA>     <NA>        <NA>             <NA>             <NA>       
+#> 10 1..S04R    1        123         1                Broadway - 7 Av… #D82233    
 #> # ℹ 301 more rows
 #> # ℹ 2 more variables: geometry <LINESTRING [US_survey_foot]>, x_offset <dbl>
 
 nyc_subway_stops_offset_sf
-#> Simple feature collection with 1909 features and 7 fields
+#> Simple feature collection with 1909 features and 8 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: 914739.9 ymin: 126191.2 xmax: 1051919 ymax: 268346.1
+#> Bounding box:  xmin: 915289.9 ymin: 126191.2 xmax: 1051669 ymax: 268346.1
 #> Projected CRS: NAD83 / New York Long Island (ftUS)
-#> # A tibble: 1,909 × 8
+#> # A tibble: 1,909 × 9
 #>    stop_id stop_name      location_type parent_station                 geometry
 #>    <chr>   <chr>                  <int> <chr>          <POINT [US_survey_foot]>
-#>  1 101N    Van Cortlandt…            NA 101                  (1011641 263271.2)
-#>  2 101S    Van Cortlandt…            NA 101                  (1011641 263271.2)
-#>  3 103N    238 St                    NA 103                  (1011011 261601.4)
-#>  4 103S    238 St                    NA 103                  (1011011 261601.4)
-#>  5 104N    231 St                    NA 104                    (1009917 259483)
-#>  6 104S    231 St                    NA 104                    (1009917 259483)
-#>  7 106N    Marble Hill-2…            NA 106                  (1008537 257916.7)
-#>  8 106S    Marble Hill-2…            NA 106                  (1008537 257916.7)
-#>  9 107N    215 St                    NA 107                  (1007032 256050.9)
-#> 10 107S    215 St                    NA 107                  (1007032 256050.9)
+#>  1 101N    Van Cortlandt…            NA 101                  (1010991 263271.2)
+#>  2 101S    Van Cortlandt…            NA 101                  (1010991 263271.2)
+#>  3 103N    238 St                    NA 103                  (1010361 261601.4)
+#>  4 103S    238 St                    NA 103                  (1010361 261601.4)
+#>  5 104N    231 St                    NA 104                    (1009267 259483)
+#>  6 104S    231 St                    NA 104                    (1009267 259483)
+#>  7 106N    Marble Hill-2…            NA 106                  (1007887 257916.7)
+#>  8 106S    Marble Hill-2…            NA 106                  (1007887 257916.7)
+#>  9 107N    215 St                    NA 107                  (1006382 256050.9)
+#> 10 107S    215 St                    NA 107                  (1006382 256050.9)
 #> # ℹ 1,899 more rows
-#> # ℹ 3 more variables: route_id <chr>, x_offset <dbl>, route_color <chr>
+#> # ℹ 4 more variables: route_id <chr>, route_group <chr>, x_offset <dbl>,
+#> #   route_color <chr>
 ```
 
 ## Example
