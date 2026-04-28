@@ -26,6 +26,15 @@ reference:
     desc: Transfer relationships between stops.
     contents:
       - nyc_subway_transfers_df
+  - title: "Station complexes"
+    desc: Bridge tables between MTA `station_complex_id` (used by the
+      ridership packages) and GTFS parent `stop_id` and `route_id`.
+    contents:
+      - nyc_subway_complexes_df
+      - nyc_subway_complexes_sf
+      - nyc_subway_complex_stops_df
+      - nyc_subway_complex_routes_df
+      - nyc_subway_stop_routes_df
   - title: "Schematic (offset) layers"
     desc: Pre-computed offset routes and stops for schematic maps.
     contents:

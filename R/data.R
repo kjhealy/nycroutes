@@ -205,6 +205,149 @@
 #' @source <https://new.mta.info/developers>
 "nyc_subway_stops_sf"
 
+#' NYC subway parent-stop route service map
+#'
+#' Long-form mapping from each parent subway station to the GTFS
+#' routes that call at it. One row per `(stop_id, route_id)` pair.
+#'
+#' @format ## `nyc_subway_stop_routes_df`
+#' A tibble with one row per parent stop and route:
+#' \describe{
+#'   \item{stop_id}{GTFS parent station identifier
+#'     (`location_type == 1`); joins to [nyc_subway_stops_parent_sf].}
+#'   \item{route_id}{GTFS route identifier; joins to
+#'     [nyc_subway_routes_df].}
+#' }
+#' @details
+#' Built by joining `stop_times.txt` to `trips.txt` and rolling the
+#' platform-level `stop_id` up to its `parent_station`. Includes any
+#' express or branch service variants (e.g., `7X`, `FX`) that call at
+#' the stop in the GTFS schedule, even when those variants do not
+#' appear in the route bullets in `nycsubwayhourly`'s
+#' `station_complex` text.
+#'
+#' @seealso [nyc_subway_complex_routes_df] for the same information
+#'   rolled up to MTA station complexes.
+#' @author Kieran Healy
+#' @source <https://new.mta.info/developers>
+"nyc_subway_stop_routes_df"
+
+#' NYC subway station complexes
+#'
+#' One row per MTA station complex. The complex is the unit of
+#' aggregation used in the ridership data published by the MTA
+#' (notably `nycsubwayhourly` and `nycsubwayodr`), and may aggregate
+#' multiple GTFS parent stops (for instance, Times Sq--42 St
+#' aggregates five parent stops across the IRT, BMT, and IND lines).
+#'
+#' @format ## `nyc_subway_complexes_df`
+#' A tibble with one row per complex:
+#' \describe{
+#'   \item{station_complex_id}{MTA complex identifier as used in
+#'     `nycsubwayhourly` and `nycsubwayodr`.}
+#'   \item{station_complex_name}{Canonical human-readable complex
+#'     name.}
+#'   \item{borough}{Borough containing the complex.}
+#'   \item{n_stops}{Number of GTFS parent stops belonging to the
+#'     complex.}
+#' }
+#' @details
+#' Subway-only. Staten Island Railway and Roosevelt Island Tramway
+#' complexes that appear in `nycsubwayhourly` are intentionally not
+#' included here because the underlying GTFS feed used by `nycroutes`
+#' is the subway feed (`gtfs_subway.zip`).
+#'
+#' Complex membership is reconstructed from the GTFS feed because the
+#' MTA's subway GTFS feed used by this package does not include
+#' `station_complexes.txt`. Each parent station is assigned to the
+#' nearest centroid in `nycsubwayhourly`'s station-complex centroid
+#' table, with a 1500 ft cutoff (in EPSG:2263) to exclude SIR parents
+#' that would otherwise snap to mainland subway centroids.
+#'
+#' @seealso [nyc_subway_complex_stops_df],
+#'   [nyc_subway_complex_routes_df], [nyc_subway_complexes_sf].
+#' @author Kieran Healy
+#' @source <https://new.mta.info/developers>
+"nyc_subway_complexes_df"
+
+#' NYC subway station complexes (sf)
+#'
+#' Centroid geometry for each MTA station complex, with the same
+#' scalar columns as [nyc_subway_complexes_df]. EPSG:2263, NAD83 /
+#' New York Long Island (ftUS).
+#'
+#' @format ## `nyc_subway_complexes_sf`
+#' A simple feature collection with one row per complex:
+#' \describe{
+#'   \item{station_complex_id}{MTA complex identifier.}
+#'   \item{station_complex_name}{Canonical complex name.}
+#'   \item{borough}{Borough.}
+#'   \item{n_stops}{Number of GTFS parent stops in the complex.}
+#'   \item{geometry}{Point centroid in EPSG:2263, computed as the
+#'     centroid of the constituent parent-stop point geometries.}
+#' }
+#' @details
+#' The centroid is the mean of the constituent parent-stop point
+#' geometries, not the single `(latitude, longitude)` published in
+#' `nycsubwayhourly` (which sits on or near a single parent stop).
+#'
+#' @seealso [nyc_subway_complexes_df] for the non-spatial version;
+#'   [nyc_subway_complex_stops_df] and [nyc_subway_stops_parent_sf]
+#'   for the constituent parent stops.
+#' @author Kieran Healy
+#' @source <https://new.mta.info/developers>
+"nyc_subway_complexes_sf"
+
+#' NYC subway complex-to-parent-stop mapping
+#'
+#' Long-form bridge between MTA station complexes and the GTFS
+#' parent stops that constitute them. One row per
+#' `(station_complex_id, stop_id)` pair.
+#'
+#' @format ## `nyc_subway_complex_stops_df`
+#' A tibble with one row per (complex, parent stop):
+#' \describe{
+#'   \item{station_complex_id}{MTA complex identifier; joins to
+#'     [nyc_subway_complexes_df].}
+#'   \item{stop_id}{GTFS parent station identifier; joins to
+#'     [nyc_subway_stops_parent_sf].}
+#' }
+#' @details
+#' Subway-only; see [nyc_subway_complexes_df] for the construction
+#' procedure and the SIR/tram caveat.
+#'
+#' @seealso [nyc_subway_complexes_df], [nyc_subway_complex_routes_df].
+#' @author Kieran Healy
+#' @source <https://new.mta.info/developers>
+"nyc_subway_complex_stops_df"
+
+#' NYC subway complex-to-route service map
+#'
+#' Flat join between MTA station complexes and the GTFS routes that
+#' call at any of their constituent parent stops. One row per
+#' `(station_complex_id, route_id)` pair.
+#'
+#' @format ## `nyc_subway_complex_routes_df`
+#' A tibble with one row per (complex, route):
+#' \describe{
+#'   \item{station_complex_id}{MTA complex identifier; joins to
+#'     [nyc_subway_complexes_df].}
+#'   \item{route_id}{GTFS route identifier; joins to
+#'     [nyc_subway_routes_df].}
+#' }
+#' @details
+#' Equivalent to
+#' `nyc_subway_complex_stops_df |> inner_join(nyc_subway_stop_routes_df, by = "stop_id") |> distinct()`.
+#' Provided directly because almost every consuming script wants it.
+#' Includes express and branch service variants (e.g., `7X`, `FX`)
+#' that may not appear in the route bullets in `nycsubwayhourly`'s
+#' `station_complex` text.
+#'
+#' @seealso [nyc_subway_complexes_df], [nyc_subway_stop_routes_df].
+#' @author Kieran Healy
+#' @source <https://new.mta.info/developers>
+"nyc_subway_complex_routes_df"
+
 #' NYC subway transfers
 #'
 #' Transfer pairs between subway stops, from the GTFS
