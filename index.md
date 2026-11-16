@@ -11,6 +11,7 @@ You can install the development version of nycroutes from
 [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("kjhealy/nycroutes")
 ```
@@ -18,6 +19,7 @@ remotes::install_github("kjhealy/nycroutes")
 ## Load
 
 ``` r
+
 library(nycroutes)
 library(dplyr)
 library(ggplot2)
@@ -27,6 +29,7 @@ library(sf)
 ## What’s included
 
 ``` r
+
 nyc_subway_routes_df
 #> # A tibble: 29 × 11
 #>    route_id route_group agency_id route_short_name route_long_name    route_desc
@@ -206,6 +209,7 @@ A quick map of the subway system, coloring each route by its MTA brand
 color and marking parent stations:
 
 ``` r
+
 ggplot() +
   geom_sf(
     data = nyc_subway_routes_sf,
